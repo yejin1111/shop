@@ -96,7 +96,7 @@ public class ItemController {
 	@GetMapping(value = { "/admin/items", "/admin/items/{page}" }) // 페이지 번호가 없는 경우와 있는 경우 2가지 매핑
 	public String itemManage(ItemSearchDto itemSearchDto, @PathVariable("page") Optional<Integer> page, Model model) {
 
-		Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 3); // PageRequest.of 메서드를 통해 Pageable 객체
+		Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 5); // PageRequest.of 메서드를 통해 Pageable 객체
 																					// 생성한다. 해당 페이지 조회, 페이지 번호가 없으면
 																					// 0페이지에서 3개 조회한다.
 		Page<Item> items = itemService.getAdminItemPage(itemSearchDto, pageable);

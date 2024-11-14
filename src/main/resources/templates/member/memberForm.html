@@ -110,10 +110,14 @@
 		}
 	</script>
 
-
 </th:block>
+
 <div layout:fragment="content">
+
+
 	<form action="/members/new" role="form" method="post" th:object="${memberFormDto}">
+		
+		<div class="form-group"><H2 >회원가입</H2></div>
 		<div class="form-group"> <label th:for="name">이름</label>
 			<input type="text" th:field="*{name}" class="form-control" placeholder="이름을 입력해주세요">
 			<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="fieldError">Incorrect data</p>
@@ -131,7 +135,7 @@
 		</div>
 		<div class="form-group">
 			<label th:for="confirmPassword">비밀번호 확인</label>
-			<input type="password" th:field="*{confirmPassword}" class="form-control" placeholder="비밀번호 확인을 입력해주세요">
+			<input type="password" th:field="*{confirmPassword}" class="form-control" placeholder="비밀번호 확인해주세요">
 			<p th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" class="fieldError">
 				Incorrect data</p>
 		</div>
