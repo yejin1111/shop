@@ -137,13 +137,15 @@
 		</div>
 
 		<div class="form-group">
-			<label th:for="address">주소</label>
+			<label th:for="address1">주소</label>
 			<div style="display: flex">
 				<input type="text" id="sample6_postcode" placeholder="우편번호" class="form-control">
 				<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" class="btn btn-primary"><br>
 			</div>
-			<input type="text" id="sample6_address" placeholder="주소" class="form-control"><br>
-			<input type="text" id="sample6_detailAddress" placeholder="상세주소" class="form-control">
+			<input type="text" th:field="*{address}" id="sample6_address" placeholder="주소" class="form-control">
+			<input type="text" th:field="*{detailAddress}" id="sample6_detailAddress" placeholder="상세주소"
+				class="form-control">
+
 			<input type="text" id="sample6_extraAddress" placeholder="참고항목" class="form-control">
 
 			<p th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="fieldError">Incorrect data</p>
