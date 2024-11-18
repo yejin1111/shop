@@ -47,10 +47,6 @@ public class MemberController {
 		return "redirect:/";
 
 	}
-	
-	
-	
-
 
 	@GetMapping(value = "/login")
 	public String loginMember() {
@@ -62,4 +58,43 @@ public class MemberController {
 		model.addAttribute("loginErrorMsg", "아이디 또는 비밀번호를 확인해주세요");
 		return "/member/memberLoginForm";
 	}
+
+	@GetMapping(value = "/email/error")
+	public String emailError(Model model) {
+		model.addAttribute("emailErrorMsg", "유효한 이메일을 입력해주세요");
+		return "/member/findEmail";
+	}
+
+	@GetMapping("/findEmail")
+	public String findEmail() {
+		return "/member/findEmail"; // 이메일 찾기 폼으로 이동
+	}
+
+	@PostMapping("/findEmail")
+	public String checkEmail(String email, Model model) {
+		// 이메일 유효성 검사
+		if (email == null || email.isEmpty()) {
+			model.addAttribute("EmailErrorMsg", "이메일을 입력해주세요.");
+			return "member/findEmail"; // 다시 이메일 입력 폼으로 이동
+		}
+
+		// 이메일 존재 여부 확인
+		boolean exists = memberService.existsByEmail(email);
+		if (exists) {
+			model.addAttribute("EmailErrorMsg", "등록된 이메일입니다.");
+		} else {
+			model.addAttribute("EmailErrorMsg", "이메일을 다시 확인해주세요.");
+		}
+
+		return "member/findEmail"; // 이메일 확인 후 결과 화면으로 이동
+	}
+
+	
+	@GetMapping(value = "/findPw")
+	public String findPw() {
+		return "/member/findPw";
+	}
+	
+	
+	
 }

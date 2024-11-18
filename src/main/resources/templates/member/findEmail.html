@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout1}">
+<th:block layout:fragment="css">
+	<style>
+		.form-group {
+			width: 40%;
+			margin: 0 auto;
+			margin-bottom: 30px;
+
+		}
+
+		.form-control {
+			height: 50px;
+		}
+	</style>
+
+</th:block>
+<div layout:fragment="content">
+	<h2 class="form-group">이메일찾기</h2>
+	<form role="form" method="post" action="/members/findEmail">
+		<div class="form-group"> <label th:for="email">이메일주소</label>
+			<input type="email" name="email" class="form-control" placeholder="이메일을 입력해주세요">
+		</div>
+		<div class="form-group">
+		<p th:if="${EmailErrorMsg}" class="error" th:text="${EmailErrorMsg}" style="color: red;"></p>
+		<button class="btn btn-primary">이메일확인</button>
+		</div>
+		<div class="form-group">
+		<button class="btn btn-light" onClick="location.href='/members/findPw'">비밀번호찾기</button>
+		<button class="btn btn-light" onClick="location.href='/members/login'">로그인하기</button>
+</div>
+	</form>
+</div>
+
+</html>
