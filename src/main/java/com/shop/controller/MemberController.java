@@ -1,6 +1,5 @@
 package com.shop.controller;
 
-import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails.Address;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -89,12 +88,22 @@ public class MemberController {
 		return "member/findEmail"; // 이메일 확인 후 결과 화면으로 이동
 	}
 
-	
-	@GetMapping(value = "/findPw")
+	// findPw
+	@GetMapping("/findPw")
 	public String findPw() {
 		return "/member/findPw";
 	}
-	
-	
-	
+
+	@PostMapping("/findPw")
+	public String resetPassword(@RequestParam("email") String email, Model model) {
+	    try {
+	        // 이메일로 임시 비밀번호 전송
+	        memberService.sendTemporaryPassword(email);
+	        model.addAttribute("PwlSuccessMsg", "임시 비밀번호가 이메일로 전송되었습니다.");
+	    } catch (IllegalArgumentException e) {
+	        model.addAttribute("PwlErrorMsg", "해당 이메일로 가입된 사용자가 없습니다.");
+	    }
+
+	    return "member/findPw"; // 비밀번호 찾기 페이지로 다시 돌아가기
+	}
 }
