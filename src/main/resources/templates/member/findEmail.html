@@ -19,7 +19,7 @@
 <div layout:fragment="content">
 	<h2 class="form-group">이메일찾기</h2>
 	
-	<form role="form" method="post" action="/members/findEmail">
+	<form role="form" method="post" action="/members/findEmail"  th:action="@{/members/findEmail}">
 		<div class="form-group"> 
 			<label th:for="email">이메일주소</label>
 			<input type="email" name="email" class="form-control" placeholder="이메일을 입력해주세요">

@@ -27,11 +27,12 @@ public class SecurityConfig {
 
 		http
 		
-        .formLogin(formLogin -> formLogin
-                .loginPage("/members/login")
-                .defaultSuccessUrl("/")
-                .usernameParameter("email")
-                .failureUrl("/members/login/error"))
+		.formLogin(formLogin -> formLogin
+		        .loginPage("/members/login")
+		        .loginProcessingUrl("/members/login")  // 로그인 처리 URL 명시
+		        .defaultSuccessUrl("/")
+		        .usernameParameter("email")
+		        .failureUrl("/members/login/error"))
 
         .logout(logout -> logout
                 .logoutRequestMatcher(new AntPathRequestMatcher("/members/logout"))
