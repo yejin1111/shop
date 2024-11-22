@@ -17,6 +17,6 @@ public class EmailService {
         message.setSubject(subject);
         message.setText(body);
         javaMailSender.send(message);
-        message.setFrom("jyj5120224@gmail.com");         //본인 gmail계정
+        message.setFrom("email@gmail.com");         //본인 gmail계정
     }
 }
